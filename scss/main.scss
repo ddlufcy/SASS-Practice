@@ -1,0 +1,97 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+//Global Mixins
+@include fancy-links;
+//////////
+
+@include google-font("Alegreya+Sans");
+@include google-font("Titillium+Web");
+
+// @include apply-to-ie-6 {
+//   body{
+//     font-size: 125%;
+//   }
+// }
+body {
+  font-family: $text-font;
+  color: $text-color;
+  
+  @include small-screens{
+    font-size: 115%;
+  }
+}
+
+h1, h2, h3, h4 {
+  font:{
+    family: $headline-font;
+    kerning: auto;
+  }
+  
+}
+h2{
+  @include large-text;
+}
+
+p {
+  font-family: $text-font;
+}
+
+a {
+  color: $link-color;
+
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+}
+
+.warning-button{
+  @include warning;
+  padding: 8px 12px;
+}
+
+
+
+
+#header {
+  @include box(8px);
+  @include box-shadow(2px 3px 4px #999);
+  height: $header-height;
+  background-color: $theme-color;
+
+  #main-menu {
+
+    li {
+      display: inline;
+    }
+    a {
+      color: $menu-item-color;
+    }
+  }
+  
+  #logo {
+
+  }
+}
+
+#main {
+  width: $content-width;
+  @include large-screens {
+    width: auto;
+    max-width: $content-width;
+    
+  }
+  margin-left: auto;
+  margin-right: auto;
+
+  #content {
+  }
+
+  #sidebar {
+  }
+}
+
+#footer {
+  height: $footer-height;
+  background-color: $ternary-color;
+}
