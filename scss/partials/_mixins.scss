@@ -1,79 +1,92 @@
+//BRAND THEMES
+@mixin dluf {
+  @if $brand==dluf {
+    @content;
+  }
+}
+
+
 //Media Queries
 @mixin tiny-screens() {
-  @media only screen and (max-width: 320px){
+  @media only screen and (max-width: 320px) {
     @content;
   }
 }
 
 @mixin small-screens() {
-  @media only screen and (max-width: 480px){
+  @media only screen and (max-width: 480px) {
     @content;
   }
 }
 
 @mixin medium-screens() {
-  @media only screen and (max-width: 680px){
+  @media only screen and (max-width: 680px) {
     @content;
   }
 }
+
 @mixin large-screens() {
-  @media only screen and (max-width: 960px){
+  @media only screen and (max-width: 960px) {
     @content;
   }
 }
 
 
 // Fonts
-@mixin google-font($font){
+@mixin google-font($font) {
   $font: unquote($font);
   @import url(https://fonts.googleapis.com/css?family=#{$font});
 }
 
 
 @mixin warning {
-    background-color: orange;
-    color:#fff;
+  background-color: orange;
+  color: #fff;
 
-    &:hover {
-      background-color: lighten(orange, 10%);
-      border-radius: 5px;
-      transform: scale(1.2);
-      transition-duration: 0550ms;
-      color: red;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    
-  }
-  
-  @mixin large-text {
-    font: {
-      size:22px;
-      weight:bold;
-      kerning: auto;
-    }
-  }
-  @mixin rounded($radius: 6px) {
-    border-radius: $radius;
-  }
-  @mixin box($radius:6px, $border: 1px solid #000) {
-    @include rounded($radius);
-    border: $border;
-  
-  }
-  @mixin fancy-links {
-    a {
-      font-style: italic;
-      text-decoration: none;
-    }
+  &:hover {
+    background-color: lighten(orange, 10%);
+    border-radius: 5px;
+    transform: scale(1.2);
+    transition-duration: 0550ms;
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
-  @mixin box-shadow($shadows...) {
-      box-shadow: $shadows;
-  }
 
-  @mixin applt-to-ie-6 {
-    * html {}
-    @content;
+}
+
+@mixin large-text {
+  font: {
+    size: 22px;
+    weight: bold;
+    kerning: auto;
   }
+}
+
+@mixin rounded($radius: 6px) {
+  border-radius: $radius;
+}
+
+@mixin box($radius:6px, $border: 1px solid #000) {
+  @include rounded($radius);
+  border: $border;
+
+}
+
+@mixin fancy-links {
+  a {
+    font-style: italic;
+    text-decoration: none;
+  }
+}
+
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+}
+
+@mixin applt-to-ie-6 {
+  * html {}
+
+  @content;
+}

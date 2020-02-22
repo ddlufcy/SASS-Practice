@@ -1,3 +1,7 @@
+//THEME
+$brand: dluf;
+
+
 // COLORS
 $text-color: #222222;
 $theme-color: #170a48;
@@ -15,3 +19,6 @@ $headline-font: "Titillium Web", Georgia, serif;
 $content-width: 960px;
 $header-height: 72px;
 $footer-height: 90px;
+
+//Column
+$col: col-width($columns: 8);

@@ -1,5 +1,36 @@
+@import "partials/functions";
 @import "partials/variables";
 @import "partials/mixins";
+
+//LOOPS
+@for $i from 1 through 6 {
+  .col-#{$i} {
+    width: $i * 2em;
+  }
+}
+$speakers: bob-banker, patty-plume, sandra-smith, daniel-luf;
+@each $speaker in $speakers {
+  .#{speaker}-profile {
+    background-image: url('/imgs/#{$speaker}.png');
+  }
+}
+$j: 2;
+@while $j <= 10 {
+  .picture-#{$j} {
+    width: $j * 10%;
+  }
+  $j: $j + 2;
+}
+
+//MAPS
+$font-sizes: (tiny: 8px, small: 11px, medium: 13px, large: 18px);
+@each $name, $size in $font-sizes {
+  .#{name} {
+    font-size: $size;
+  }
+}
+
+
 
 //Global Mixins
 @include fancy-links;
@@ -13,23 +44,47 @@
 //     font-size: 125%;
 //   }
 // }
+
+//Extend Only Selectors
+%highlight {
+  font-style: italic;
+}
+
+/////////////////
+
+.sub-title {
+  @extend %highlight;
+  font-size: em(20px);
+}
+
+
+$contrast: high;
+
+
 body {
   font-family: $text-font;
   color: $text-color;
+  font-size: em(18px);
+
   
-  @include small-screens{
+
+  @include small-screens {
     font-size: 115%;
   }
 }
 
-h1, h2, h3, h4 {
-  font:{
+h1,
+h2,
+h3,
+h4 {
+  font: {
     family: $headline-font;
     kerning: auto;
   }
-  
+
 }
-h2{
+
+h2 {
   @include large-text;
 }
 
@@ -40,16 +95,34 @@ p {
 a {
   color: $link-color;
 
+  @include dluf {
+    color: #8779ff;
+    &:hover {
+      color: darken(#8779ff, 15%);
+    }
+  }
+
   &:hover {
     color: darken($link-color, 15%);
   }
 }
 
-.warning-button{
+.warning-button {
   @include warning;
   padding: 8px 12px;
 }
 
+.cta-button {
+  @extend .warning-button;
+  @extend .error !optional;
+  @include rounded;
+  font-weight: bold;
+}
+
+.super-cta-button {
+  @extend .cta-button;
+  font-size: em(20px);
+}
 
 
 
@@ -64,34 +137,59 @@ a {
     li {
       display: inline;
     }
+
     a {
       color: $menu-item-color;
+      padding: 6px 8px;
+      border-bottom: 1px solid transparentize(#fefefe, 1);
+      transition: border-bottom .5s;
+      transition-timing-function: ease-in-out;
+
+      &:hover {
+        border-bottom: 1px solid opacify(#fefefe, .5);
+      }
+
     }
   }
-  
-  #logo {
 
-  }
+  #logo {}
 }
 
 #main {
   width: $content-width;
+
   @include large-screens {
     width: auto;
     max-width: $content-width;
-    
+
   }
+
   margin-left: auto;
   margin-right: auto;
 
   #content {
+    float: left;
+    width: 6*$col;
   }
 
   #sidebar {
+    float: right;
+    width: 2*$col;
+
+    li {
+      list-style: none;
+      padding: em(16px) em(20px);
+      border-bottom: 1px dashed #999;
+
+      &:hover {
+        background-color: #efefef;
+      }
+    }
   }
 }
 
 #footer {
+  clear: both;
   height: $footer-height;
   background-color: $ternary-color;
 }
